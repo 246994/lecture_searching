@@ -23,6 +23,53 @@ def read_data(file_name, field):
     with open(file_name,"r") as f:
         data = json.load(f)
     return data.get(field)
+
+
+def linear_search(sequence, target):
+    """
+    Perform linear search on an unsorted sequence to find the target.
+
+    Args:
+    - sequence (list): The sequence to search within.
+    - target (int): The number to search for.
+
+    Returns:
+    - dict: A dictionary containing two keys:
+        - 'positions': A list of positions (indices) where the target is found.
+        - 'count': The count of occurrences of the target in the sequence.
+    """
+    positions = []
+    count = 0
+
+    for i, num in enumerate(sequence):
+        if num == target:
+            positions.append(i)
+            count += 1
+
+    return {'positions': positions, 'count': count}
+
+
+def pattern_search(sequence, pattern):
+    """
+    Perform pattern search in a DNA sequence to find occurrences of the pattern.
+
+    Args:
+    - sequence (str): The DNA sequence to search within.
+    - pattern (str): The pattern to search for.
+
+    Returns:
+    - set: A set containing the positions (indices) where the pattern is found in the sequence.
+    """
+    positions = set()
+    seq_length = len(sequence)
+    pattern_length = len(pattern)
+
+    for i in range(seq_length - pattern_length + 1):
+        if sequence[i:i + pattern_length] == pattern:
+            positions.add(i)
+
+    return positions
+
 def binary_search(numbers,target):
     left, right = 0, len(numbers) - 1
 
