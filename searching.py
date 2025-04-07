@@ -128,7 +128,23 @@ def pattern_search(sequence, pattern):
     #
     # return positions
 
-# def binary_search(numbers,target):
+def binary_search(numbers,target):
+    leva ,prava = 0, len(numbers)
+
+    while leva <= prava:
+        stred = (leva+prava) // 2
+        if numbers[stred] == target:
+            return stred
+        elif numbers[stred] < target:
+            leva = stred +1
+        else:
+            prava = stred-1
+    return None
+
+
+
+
+    #2024
 #     left, right = 0, len(numbers) - 1
 #
 #     while left <= right:
@@ -147,9 +163,9 @@ def main():
     sequential_data = read_data(file_name, field="unordered_numbers")
     # print(sequential_data)
     vzor = pattern_search("ACCAGGATAGGGATA", "ATA")
-    print(vzor)
-
-
+    # print(vzor)
+    indeks = binary_search([1,2,3,4,5,6,7,8,9], 3)
+    print(indeks)
     # 2024
     # sequentional_data = read_data("sequential.json","unordered_numbers")
     # print(sequentional_data)
