@@ -45,6 +45,19 @@ def linear_search(sequence, target):
         - 'positions': A list of positions (indices) where the target is found.
         - 'count': The count of occurrences of the target in the sequence.
     """
+    seq_dic = {}
+    pozice = []
+    vyskyt = int
+    for i,j in enumerate(sequence):
+        if j == target:
+            pozice.append(i)
+            vyskyt += 1
+    seq_dic = {"positions": pozice,"count":vyskyt}
+    return seq_dic
+
+
+
+    #2024
     # positions = []
     # count = 0
     #
@@ -94,7 +107,7 @@ def main():
     file_name = "sequential.json"
 
     sequential_data = read_data(file_name, field="unordered_numbers")
-    print(sequential_data)
+    # print(sequential_data)
 
     # 2024
     # sequentional_data = read_data("sequential.json","unordered_numbers")
