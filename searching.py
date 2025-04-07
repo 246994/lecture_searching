@@ -1,6 +1,8 @@
 import json
 import os
 
+from numpy.ma.core import indices
+
 # get current working directory path
 cwd_path = os.getcwd()
 
@@ -45,18 +47,26 @@ def linear_search(sequence, target):
         - 'positions': A list of positions (indices) where the target is found.
         - 'count': The count of occurrences of the target in the sequence.
     """
-    seq_dic = {}
-    pozice = []
-    vyskyt = int
-    for i,j in enumerate(sequence):
-        if j == target:
-            pozice.append(i)
-            vyskyt += 1
-    seq_dic = {"positions": pozice,"count":vyskyt}
-    return seq_dic
+    # 2025 MOJE
+    # seq_dic = {}
+    # pozice = []
+    # vyskyt = int
+    # for i,j in enumerate(sequence):
+    #     if j == target:
+    #         pozice.append(i)
+    #         vyskyt += 1
+    # seq_dic = {"positions": pozice,"count":vyskyt}
+    # return seq_dic
 
+    #2025 tabule
+    indices = []
+    count = 0
+    idx = 0
 
-
+    while idx < len(sequence):
+        indices.append(idx)
+        count+=1
+    idx += 1
     #2024
     # positions = []
     # count = 0
@@ -80,6 +90,34 @@ def pattern_search(sequence, pattern):
     Returns:
     - set: A set containing the positions (indices) where the pattern is found in the sequence.
     """
+
+    #2025 moje
+    # pozice = set()
+    # seq_delka = len(sequence)
+    # pattern_delka = len(pattern)
+    #
+    # for i in range(seq_delka-pattern_delka+1):
+    #     if sequence[i:(i+pattern_delka)] == pattern:
+    #         pozice.add(i)
+    #
+    # return pozice
+
+    # 2025 tabule
+    pattern_size = len(pattern)
+    indices= set()
+
+    left_idx = 0
+    right_idx = pattern_size
+    while right_idx < len(sequence):
+        for idx in range(pattern_size):
+            if pattern[idx] != sequence[left_idx+idx]:
+                break
+        else:
+            indices.add(left_idx + pattern_size // 2)
+        left_idx+=1
+        right_idx+=1
+    return indices
+    # 2024
     # positions = set()
     # seq_length = len(sequence)
     # pattern_length = len(pattern)
@@ -102,12 +140,15 @@ def pattern_search(sequence, pattern):
 #         else:
 #             right = mid - 1
 #
-#     return None
+    # return None
 def main():
     file_name = "sequential.json"
-
+    #2025
     sequential_data = read_data(file_name, field="unordered_numbers")
     # print(sequential_data)
+    vzor = pattern_search("ACCAGGATAGGGATA", "ATA")
+    print(vzor)
+
 
     # 2024
     # sequentional_data = read_data("sequential.json","unordered_numbers")
